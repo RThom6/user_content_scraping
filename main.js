@@ -2,7 +2,7 @@ async function getWatchHistory() {
   const appElement = document.querySelector("#app");
   const pageData = JSON.parse(appElement.getAttribute("data-page"));
   const historySource = pageData.props.history;
-  const csrfToken = document.cookie.match(/XSRF-TOKEN=([^;]+)/)[1]; // Get the XSRF-TOKEN from cookies for the headers
+  const xsrfToken = document.cookie.match(/XSRF-TOKEN=([^;]+)/)[1]; // Get the XSRF-TOKEN from cookies for the headers
 
   let watchTimeData = [];
   try {
@@ -16,7 +16,7 @@ async function getWatchHistory() {
         "X-Inertia-Version": pageData.version,
         "X-Inertia-Partial-Data": "watchTime",
         "X-Inertia-Partial-Component": pageData.component,
-        "X-XSRF-TOKEN": decodeURIComponent(csrfToken),
+        "X-XSRF-TOKEN": decodeURIComponent(xsrfToken),
       },
     });
     const watchTimeResponse = await response.json();
