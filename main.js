@@ -39,6 +39,7 @@ async function getWatchHistory() {
         episode_title: mainInfo.title.includes(":")
           ? mainInfo.title.split(":", 2)[1].trim()
           : null,
+        description: mainInfo.description,
         episode_number: watchTimeInfo.episode || null,
         season_number: watchTimeInfo.season || null,
       };
